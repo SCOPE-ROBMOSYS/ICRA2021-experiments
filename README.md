@@ -88,9 +88,7 @@ then write
 setBatteryCharge X
 ```
 
-with `X` the new value of the battery level (between 0 an 100), as below:
-
-![ezgif-7-b0a8d90c3f74](https://user-images.githubusercontent.com/8132627/77671740-50cbf280-6f88-11ea-9efb-769de0913f9d.gif)
+with `X` the new value of the battery level (between 0 an 100).
 
 
 
