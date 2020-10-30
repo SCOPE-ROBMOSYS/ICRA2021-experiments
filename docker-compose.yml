@@ -37,6 +37,7 @@ services:
         cmake_parallel: 8
 
   bt-implementation:
+    <<: *base
     image: scoperobmosys/bt-implementation:latest
     build:
       dockerfile: Dockerfile.bt-implementation
@@ -308,17 +309,17 @@ services:
       - localization2DServer
       - fakeBattery
 
-  #yarpbatterygui:
-    #<<: *base
-    #container_name: yarpbatterygui
-    #command: sh -c "
-      #yarp wait /root;
-      #yarp wait /fakeBattery/rpc:i;
-      #yarp wait /fakeBattery/data:o;
-      #yarpbatterygui --remote /fakeBattery --refresh_period 1.0"
-    #depends_on:
-      #- yarp-server
-      #- fakeBattery
+  yarpbatterygui:
+    <<: *base
+    container_name: yarpbatterygui
+    command: sh -c "
+      yarp wait /root;
+      yarp wait /fakeBattery/rpc:i;
+      yarp wait /fakeBattery/data:o;
+      yarpbatterygui --remote /fakeBattery --refresh_period 1.0"
+    depends_on:
+      - yarp-server
+      - fakeBattery
 
   BatteryComponent:
     <<: *base
