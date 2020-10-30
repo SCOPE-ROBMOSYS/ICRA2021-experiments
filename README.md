@@ -53,7 +53,7 @@ Follow the instructions at https://docs.docker.com/install/
    docker-compose build bt-implementation
    ```
 
-   If YARP  is not installed in the system then run:
+   If YARP  is not installed in the system then run, specifying your ip address:
 
    ```bash
    mkdir -p ${HOME}/.config/yarp/ ${HOME}/.local/share/yarp/
