@@ -102,7 +102,7 @@ To run Experiment 1 of the paper, change the battery level to 10%
 
 ## Run Experiment 2
 
-To run Experiment 2 of the paper, move to the branch `experiment-2``(`git checkout experiment-2`), rebuild (`docker-compose build bt-implementation`), rerun (`docker-compose up`) and change the battery level to 25%
+To run Experiment 2 of the paper, move to the branch `experiment-2` (`git checkout experiment-2`), rebuild (`docker-compose build bt-implementation`), rerun (`docker-compose up`) and change the battery level to 25%
 
 
 
