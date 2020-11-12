@@ -76,7 +76,7 @@ The experiment starts as soon as all the components are up an running.
 
 
 
-To change  the battery level, open a terminal window in the folder `bt-implementation`  and run
+To change  the battery level, open a terminal window in the folder `ICRA2021-experiments`  and run
 
 ```bash
 docker-compose run --rm bt-implementation yarp rpc /fakeBattery/control/rpc:i
