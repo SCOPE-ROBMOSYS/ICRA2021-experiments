@@ -1,8 +1,9 @@
 # Simulated Experiments for the paper: Runtime Verification of Behavior Trees.
 
 In this repository, you will find the code related to the experiments of the paper: <br>
-"Runtime Verification of Behavior Trees" <br>
-Submitted at ICRA2021 by Michele Colledanchise, Giuseppe Cicala, Daniele Domenichelli, Armando Tacchella, and Lorenzo Natale.
+"Formalizing the Execution Context of Behavior Trees
+for Runtime Verification of Deliberative Policies" <br>
+Submitted at IROS2021 by Michele Colledanchise, Giuseppe Cicala, Daniele Domenichelli, Armando Tacchella, and Lorenzo Natale.
 
 
 
