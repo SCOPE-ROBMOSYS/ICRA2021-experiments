@@ -1,9 +1,10 @@
-# Simulated Experiments for the paper: Runtime Verification of Behavior Trees.
+# Simulated Experiments for the paper:Formalizing the Execution Context of Behavior Trees
+for Runtime Verification of Deliberative Policie.
 
 In this repository, you will find the code related to the experiments of the paper: <br>
 "Formalizing the Execution Context of Behavior Trees
 for Runtime Verification of Deliberative Policies" <br>
-Submitted at IROS2021 by Michele Colledanchise, Giuseppe Cicala, Daniele Domenichelli, Armando Tacchella, and Lorenzo Natale.
+Presented at ICRA2021 by Michele Colledanchise, Giuseppe Cicala, Daniele Domenichelli, Armando Tacchella, and Lorenzo Natale.
 
 
 
