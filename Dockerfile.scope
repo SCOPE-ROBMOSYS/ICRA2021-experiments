@@ -82,6 +82,9 @@ RUN apt-get update -qq && \
         yarp-device-rangefinder2dclient \
         yarp-device-navigation2dserver \
         yarp-device-navigation2dclient \
+        yarp-nwc-yarp-navigation2d \
+        yarp-nwc-yarp-localization2d \
+        yarp-nwc-yarp-map2d \
         yarp-device-remotecontrolboard \
         yarp-device-localization2dclient \
         yarp-device-batteryclient \
@@ -179,6 +182,7 @@ COPY *.patch /tmp/
 RUN git clone --branch master https://github.com/BehaviorTree/Groot.git /usr/local/src/Groot && \
     git -C /usr/local/src/Groot config --local user.email "daniele.domenichelli@iit" && \
     git -C /usr/local/src/Groot config --local user.name "Daniele E. Domenichelli" && \
+    git -C /usr/local/src/Groot checkout 5ef6ac5c300264a236ab2ba2e3d1d53fc6c24f1c && \
     git -C /usr/local/src/Groot am /tmp/0001-Always-build-behavior_tree_editor-as-STATIC.patch && \
     git -C /usr/local/src/Groot config --local --remove-section user && \
     cmake \
@@ -190,7 +194,7 @@ RUN git clone --branch master https://github.com/BehaviorTree/Groot.git /usr/loc
     ldconfig
 
 # Build and install icub-main
-RUN git clone --branch devel https://github.com/robotology/icub-main.git /usr/local/src/icub-main && \
+RUN git clone --branch master https://github.com/robotology/icub-main.git /usr/local/src/icub-main && \
     cmake \
         -H/usr/local/src/icub-main \
         -B/usr/local/src/icub-main/build \
@@ -210,19 +214,19 @@ RUN git clone --branch devel https://github.com/robotology/icub-main.git /usr/lo
 #     ldconfig
 
 # Build and install navigation
-COPY maps/* /tmp/maps/
-RUN git clone --branch master https://github.com/robotology/navigation.git /usr/local/src/navigation && \
-    git -C /usr/local/src/navigation checkout a177ee920af0c9d3ccf18042addcf16b5a5a4435 && \
-    echo >> /usr/local/src/navigation/app/robotPathPlannerExamples/conf/robotGoto_robot_2wheels.ini && \
-    echo >> /usr/local/src/navigation/app/robotPathPlannerExamples/conf/robotGoto_robot_2wheels.ini && \
-    echo [GENERAL] >> /usr/local/src/navigation/app/robotPathPlannerExamples/conf/robotGoto_robot_2wheels.ini && \
-    sed -i '/odomLocalizer::getEstimatedOdometry is not yet implemented/d' /usr/local/src/navigation/src/localizationDevices/odomLocalizer/odomLocalizer.cpp && \
-    sed -i 's/initial_x 0.0/initial_x -6.0/g' /usr/local/src/navigation/app/robotPathPlannerExamples/conf/odomLocalizer.ini && \
-    mv /tmp/maps/* /usr/local/src/navigation/app/mapsExample/ && \
-    cmake \
-        -H/usr/local/src/navigation \
-        -B/usr/local/src/navigation/build \
-        ${CMAKE_COMMON_OPTIONS} && \
-    cmake --build /usr/local/src/navigation/build && \
-    cmake --build /usr/local/src/navigation/build --target install && \
-    ldconfig
+# COPY maps/* /tmp/maps/
+# RUN git clone --branch master https://github.com/robotology/navigation.git /usr/local/src/navigation && \
+#     git -C /usr/local/src/navigation checkout a177ee920af0c9d3ccf18042addcf16b5a5a4435 && \
+#     echo >> /usr/local/src/navigation/app/robotPathPlannerExamples/conf/robotGoto_robot_2wheels.ini && \
+#     echo >> /usr/local/src/navigation/app/robotPathPlannerExamples/conf/robotGoto_robot_2wheels.ini && \
+#     echo [GENERAL] >> /usr/local/src/navigation/app/robotPathPlannerExamples/conf/robotGoto_robot_2wheels.ini && \
+#     sed -i '/odomLocalizer::getEstimatedOdometry is not yet implemented/d' /usr/local/src/navigation/src/localizationDevices/odomLocalizer/odomLocalizer.cpp && \
+#     sed -i 's/initial_x 0.0/initial_x -6.0/g' /usr/local/src/navigation/app/robotPathPlannerExamples/conf/odomLocalizer.ini && \
+#     mv /tmp/maps/* /usr/local/src/navigation/app/mapsExample/ && \
+#     cmake \
+#         -H/usr/local/src/navigation \
+#         -B/usr/local/src/navigation/build \
+#         ${CMAKE_COMMON_OPTIONS} && \
+#     cmake --build /usr/local/src/navigation/build && \
+#     cmake --build /usr/local/src/navigation/build --target install && \
+#     ldconfig

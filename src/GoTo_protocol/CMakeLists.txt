@@ -7,17 +7,14 @@
 
 # Create the GoTo_protocol C++ Library
 add_library(GoTo_protocol STATIC)
-# yarp_add_idl(IDL_GEN_FILES GoTo.thrift)
+yarp_add_idl(IDL_GEN_FILES GoTo.thrift)
 target_sources(GoTo_protocol
   PRIVATE
-    GoTo.cpp
-    GoTo.h
-    GoToStatus.cpp
-    GoToStatus.h
+  ${IDL_GEN_FILES}
 )
 target_include_directories(GoTo_protocol
-#   INTERFACE
-#     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+  INTERFACE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)

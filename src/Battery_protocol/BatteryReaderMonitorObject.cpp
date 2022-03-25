@@ -57,7 +57,7 @@ yarp::os::Things& BatteryReaderMonitorObject::update(yarp::os::Things& thing)
     yCTrace(BATTERYREADERMONITOR) << "update()";
 
     yarp::os::Bottle msg;
-    msg.addDouble(yarp::os::SystemClock::nowSystem());
+    msg.addFloat64(yarp::os::SystemClock::nowSystem());
     msg.addString(source);
     msg.addString(destination);
     msg.addString("command");
@@ -106,7 +106,7 @@ yarp::os::Things& BatteryReaderMonitorObject::updateReply(yarp::os::Things& thin
 
     yCTrace(BATTERYREADERMONITOR) << "updateReply()";
     yarp::os::Bottle msg;
-    msg.addDouble(yarp::os::SystemClock::nowSystem());
+    msg.addFloat64(yarp::os::SystemClock::nowSystem());
     msg.addString(source);
     msg.addString(destination);
     msg.addString("reply");
@@ -125,15 +125,15 @@ yarp::os::Things& BatteryReaderMonitorObject::updateReply(yarp::os::Things& thin
 
     yCTrace(BATTERYREADERMONITOR) << "update() -> receiver";
 
-    if (const auto* reply = thing.cast_as<BatteryReader_level_helper>()) {
-        yCDebug(BATTERYREADERMONITOR) << "Received reply to 'level':" << reply->m_return_helper;
+    if (const auto* helper = thing.cast_as<BatteryReader_level_helper>()) {
+        yCDebug(BATTERYREADERMONITOR) << "Received reply to 'level':" << helper->reply.return_helper;
         breply.addString("level");
-        breply.addFloat64(reply->m_return_helper);
-    } else if (const auto* reply = thing.cast_as<BatteryReader_charging_status_helper>()) {
+        breply.addFloat64(helper->reply.return_helper);
+    } else if (const auto* helper = thing.cast_as<BatteryReader_charging_status_helper>()) {
         // FIXME ChargingStatusVocab::toString should be static.
-        yCDebug(BATTERYREADERMONITOR) << "Received reply to 'charging_status'" << ChargingStatusVocab().toString(reply->m_return_helper);
+        yCDebug(BATTERYREADERMONITOR) << "Received reply to 'charging_status'" << ChargingStatusConverter().toString(helper->reply.return_helper);
         breply.addString("send_stop");
-        breply.addInt32(reply->m_return_helper);
+        breply.addInt32(helper->reply.return_helper);
     } else {
         yCWarning(BATTERYREADERMONITOR) << "Received unknown reply";
         breply.addString("[unknown]");

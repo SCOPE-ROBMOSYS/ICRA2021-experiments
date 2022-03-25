@@ -7,16 +7,13 @@
 
 # Create the battery_commands C++ Library
 add_library(Battery_protocol STATIC)
-# yarp_add_idl(IDL_GEN_FILES battery_commands.thrift)
+yarp_add_idl(IDL_GEN_FILES battery_commands.thrift)
 target_sources(Battery_protocol
   PRIVATE
-    BatteryReader.cpp
-    BatteryReader.h
-    ChargingStatus.cpp
-    ChargingStatus.h)
+  ${IDL_GEN_FILES})
 target_include_directories(Battery_protocol
-#   INTERFACE
-#     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+  INTERFACE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)

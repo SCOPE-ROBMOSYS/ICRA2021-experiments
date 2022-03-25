@@ -23,19 +23,19 @@ public:
     bool open()
     {
         yarp::os::Property pnavclient_cfg;
-        pnavclient_cfg.put("device", "navigation2DClient");
+        pnavclient_cfg.put("device", "navigation2D_nwc_yarp");
         pnavclient_cfg.put("local", "/GoToComponent/navigation2DClient");
-        pnavclient_cfg.put("navigation_server", "/navigationServer");
-        pnavclient_cfg.put("map_locations_server", "/mapServer");
-        pnavclient_cfg.put("localization_server", "/localizationServer");
+        pnavclient_cfg.put("navigation_server", "/navigation2D_nws_yarp");
+        pnavclient_cfg.put("map_locations_server", "/map2D_nws_yarp");
+        pnavclient_cfg.put("localization_server", "/localization2D_nws_yarp");
 
         if (!ddnavclient.open(pnavclient_cfg)) {
-            yError("Could not open navigation2DClient");
+            yError("Could not open navigation2D_nwc_yarp");
             return false;
         }
 
         if (!ddnavclient.view(inav)) {
-            yError("Could not open navigation2DClient");
+            yError("Could not open navigation2D_nwc_yarp");
             return false;
         }
 

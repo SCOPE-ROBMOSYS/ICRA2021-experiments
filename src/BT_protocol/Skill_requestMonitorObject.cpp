@@ -128,10 +128,10 @@ yarp::os::Things& Skill_requestMonitorObject::updateReply(yarp::os::Things& thin
     yCTrace(SKILLREQUESTMONITOR) << "update() -> receiver";
 
     // FIXME SkillAckVocab::toString should be static.
-    if (const auto* reply = thing.cast_as<Skill_request_request_ack_helper>()) {
-        yCDebug(SKILLREQUESTMONITOR) << "Received reply to 'request_ack':" << SkillAckVocab().toString(reply->m_return_helper);
+    if (const auto* helper = thing.cast_as<Skill_request_request_ack_helper>()) {
+        yCDebug(SKILLREQUESTMONITOR) << "Received reply to 'request_ack':" << SkillAckConverter().toString(helper->reply.return_helper);
         breply.addString("request_ack");
-        breply.addInt32(static_cast<int32_t>(reply->m_return_helper));
+        breply.addInt32(static_cast<int32_t>(helper->reply.return_helper));
     } else if (/*const auto* reply = */thing.cast_as<Skill_request_send_start_helper>()) {
         yCDebug(SKILLREQUESTMONITOR) << "Received reply to 'send_start'";
         breply.addString("send_start");
