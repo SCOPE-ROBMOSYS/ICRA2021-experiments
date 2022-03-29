@@ -7,6 +7,7 @@
 
 # Create the yarp_bt_nodes library
 add_library(yarp_bt_nodes STATIC)
+find_package(BehaviorTreeV3)
 target_sources(yarp_bt_nodes
   PRIVATE
     yarp_action.cpp
@@ -23,7 +24,7 @@ target_link_libraries(yarp_bt_nodes
   PUBLIC
     YARP::YARP_os
     YARP::YARP_init
-    BehaviorTree::behaviortree_cpp_v3
+    BT::behaviortree_cpp_v3
     BT_protocol)
 
 # Create the BT executable
@@ -35,7 +36,7 @@ target_link_libraries(from_xml_example
   PRIVATE
     YARP::YARP_os
     YARP::YARP_init
-    BehaviorTree::behaviortree_cpp_v3
+    BT::behaviortree_cpp_v3
     yarp_bt_nodes
     pthread)
 

@@ -57,7 +57,7 @@ yarp::os::Things& Skill_requestMonitorObject::update(yarp::os::Things& thing)
     yCTrace(SKILLREQUESTMONITOR) << "update()";
 
     yarp::os::Bottle msg;
-    msg.addDouble(yarp::os::SystemClock::nowSystem());
+    msg.addFloat64(yarp::os::SystemClock::nowSystem());
     msg.addString(source);
     msg.addString(destination);
     msg.addString("command");
@@ -108,7 +108,7 @@ yarp::os::Things& Skill_requestMonitorObject::updateReply(yarp::os::Things& thin
     yCTrace(SKILLREQUESTMONITOR) << "updateReply()";
 
     yarp::os::Bottle msg;
-    msg.addDouble(yarp::os::SystemClock::nowSystem());
+    msg.addFloat64(yarp::os::SystemClock::nowSystem());
     msg.addString(source);
     msg.addString(destination);
     msg.addString("reply");

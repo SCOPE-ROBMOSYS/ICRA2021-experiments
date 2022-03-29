@@ -57,7 +57,7 @@ yarp::os::Things& GoToMonitorObject::update(yarp::os::Things& thing)
     yCTrace(GOTOMONITOR) << "update()";
 
     yarp::os::Bottle msg;
-    msg.addDouble(yarp::os::SystemClock::nowSystem());
+    msg.addFloat64(yarp::os::SystemClock::nowSystem());
     msg.addString(source);
     msg.addString(destination);
     msg.addString("command");
@@ -115,7 +115,7 @@ yarp::os::Things& GoToMonitorObject::updateReply(yarp::os::Things& thing)
     yCTrace(GOTOMONITOR) << "updateReply()";
 
     yarp::os::Bottle msg;
-    msg.addDouble(yarp::os::SystemClock::nowSystem());
+    msg.addFloat64(yarp::os::SystemClock::nowSystem());
     msg.addString(source);
     msg.addString(destination);
     msg.addString("reply");

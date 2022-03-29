@@ -110,7 +110,7 @@ int main()
 #ifdef ZMQ_FOUND
     PublisherZMQ publisher_zmq(tree);
 #endif
-    printTreeRecursively(tree.root_node);
+    printTreeRecursively(tree.rootNode());
 
 
     //bool is_ok = true;
@@ -152,7 +152,7 @@ int main()
     while(true)
     {
         yarp::os::Bottle msg;
-        msg.addDouble(yarp::os::SystemClock::nowSystem());
+        msg.addFloat64(yarp::os::SystemClock::nowSystem());
         msg.addString("/tick");
         msg.addString("*");
         msg.addString("tick");
@@ -161,7 +161,7 @@ int main()
         YARP_UNUSED(bcmd);
         port.write(msg);
 
-        tree.root_node->executeTick();
+        tree.rootNode()->executeTick();
         std::this_thread::sleep_for (std::chrono::milliseconds(1000));
     }
 

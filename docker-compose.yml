@@ -255,12 +255,12 @@ services:
       - IsAtDestination
       - IsAtChargingStation
 
-  groot:
-    <<: *base
-    container_name: groot
-    command: Groot --mode monitor
-    depends_on:
-      - BehaviorTree
+  # groot:
+  #   <<: *base
+  #   container_name: groot
+  #   command: Groot --mode monitor
+  #   depends_on:
+  #     - BehaviorTree
 
 volumes:
   logs-volume:

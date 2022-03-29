@@ -167,7 +167,7 @@ ENV CMAKE_BUILD_PARALLEL_LEVEL=${cmake_parallel}
 
 # Build and install BehaviorTree.CPP
 RUN git clone --branch master https://github.com/BehaviorTree/BehaviorTree.CPP.git /usr/local/src/BehaviorTree.CPP && \
-    git -C /usr/local/src/BehaviorTree.CPP checkout 5e8e2da2d93139fdf5f5d188e6dedf4e8180cf15 && \
+    # git -C /usr/local/src/BehaviorTree.CPP checkout 5e8e2da2d93139fdf5f5d188e6dedf4e8180cf15 && \
     ls -la /usr/local/src/BehaviorTree.CPP/src/decorators && \
     cmake \
         -H/usr/local/src/BehaviorTree.CPP \
@@ -178,20 +178,20 @@ RUN git clone --branch master https://github.com/BehaviorTree/BehaviorTree.CPP.g
     ldconfig
 
 # Build and install Groot
-COPY *.patch /tmp/
-RUN git clone --branch master https://github.com/BehaviorTree/Groot.git /usr/local/src/Groot && \
-    git -C /usr/local/src/Groot config --local user.email "daniele.domenichelli@iit" && \
-    git -C /usr/local/src/Groot config --local user.name "Daniele E. Domenichelli" && \
-    git -C /usr/local/src/Groot checkout 5ef6ac5c300264a236ab2ba2e3d1d53fc6c24f1c && \
-    git -C /usr/local/src/Groot am /tmp/0001-Always-build-behavior_tree_editor-as-STATIC.patch && \
-    git -C /usr/local/src/Groot config --local --remove-section user && \
-    cmake \
-        -H/usr/local/src/Groot \
-        -B/usr/local/src/Groot/build \
-        ${CMAKE_COMMON_OPTIONS} && \
-    cmake --build /usr/local/src/Groot/build && \
-    cmake --build /usr/local/src/Groot/build --target install && \
-    ldconfig
+# COPY *.patch /tmp/
+# RUN git clone --branch master https://github.com/BehaviorTree/Groot.git /usr/local/src/Groot && \
+#     git -C /usr/local/src/Groot config --local user.email "daniele.domenichelli@iit" && \
+#     git -C /usr/local/src/Groot config --local user.name "Daniele E. Domenichelli" && \
+#     git -C /usr/local/src/Groot checkout 5ef6ac5c300264a236ab2ba2e3d1d53fc6c24f1c && \
+#     git -C /usr/local/src/Groot am /tmp/0001-Always-build-behavior_tree_editor-as-STATIC.patch && \
+#     git -C /usr/local/src/Groot config --local --remove-section user && \
+#     cmake \
+#         -H/usr/local/src/Groot \
+#         -B/usr/local/src/Groot/build \
+#         ${CMAKE_COMMON_OPTIONS} && \
+#     cmake --build /usr/local/src/Groot/build && \
+#     cmake --build /usr/local/src/Groot/build --target install && \
+#     ldconfig
 
 # Build and install icub-main
 RUN git clone --branch master https://github.com/robotology/icub-main.git /usr/local/src/icub-main && \
