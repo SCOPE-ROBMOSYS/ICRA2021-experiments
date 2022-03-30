@@ -17,6 +17,7 @@ x-base: &base
     - "${HOME}/.config/yarp:/home/scope/.config/yarp:rw"
     - "${HOME}/.local/share/yarp:/home/scope/.local/share/yarp:rw"
     - "${XDG_RUNTIME_DIR}/yarp:/run/user/1000/yarp"
+    - "${XDG_RUNTIME_DIR}/dconf:/run/user/1000/dconf"
     - "/run/user/1000/bus:/run/user/1000/bus"
     - logs-volume:/home/scope/logs
   network_mode: host
@@ -54,7 +55,7 @@ services:
   yarp-server:
     <<: *base
     container_name: yarp-server
-    command: echo "a"
+    command: terminator --no-dbus
 
     #gammaray --inject-only --listen tcp://0.0.0.0:40001
   Monitor:
@@ -157,9 +158,6 @@ services:
     <<: *base
     container_name: fakeBatteryChargingStation
     command: sh -c "
-      yarp wait /navigationServer/rpc;
-      yarp wait /mapServer/rpc;
-      yarp wait /localizationServer/rpc;
       yarp wait /fakeBattery/rpc:i;
       yarp wait /fakeBattery/data:o;
       yarp wait /fakeBattery/control/rpc:i;

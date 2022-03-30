@@ -43,13 +43,13 @@ public:
         name = "FakeBatteryChargingStation";
 
         // localization_server
-        std::string localization_server = "/localizationServer";
+        std::string localization_server = "/localization2D_nws_yarp";
 
         // navigation_server
-        std::string navigation_server = "/navigationServer";
+        std::string navigation_server = "/navigation2D_nws_yarp";
 
         // map_locations_server
-        std::string map_locations_server = "/mapServer";
+        std::string map_locations_server = "/map2D_nws_yarp";
 
         // fake_battery server
         std::string fakeBattery_server = "/fakeBattery";
@@ -63,21 +63,21 @@ public:
         // angular_tolerance
         angular_tolerance = 10.0;
 
-        // navigation2DClient
+        // navigation2D_nwc_yarp
         yarp::os::Property pnav_cfg;
-        pnav_cfg.put("device", "navigation2DClient");
-        pnav_cfg.put("local", "/" + name + "/navigation2DClient");
+        pnav_cfg.put("device", "navigation2D_nwc_yarp");
+        pnav_cfg.put("local", "/" + name + "/navigation2D_nwc_yarp");
         pnav_cfg.put("navigation_server", navigation_server);
         pnav_cfg.put("map_locations_server", map_locations_server);
         pnav_cfg.put("localization_server", localization_server);
 
         if (!ddnavclient.open(pnav_cfg)) {
-            yError("Could not open navigation2DClient");
+            yError("Could not open navigation2D_nwc_yarp");
             return false;
         }
 
         if (!ddnavclient.view(inav)) {
-            yError("Could not open navigation2DClient");
+            yError("Could not open navigation2D_nwc_yarp");
             return false;
         }
 
